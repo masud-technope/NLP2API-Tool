@@ -1,7 +1,8 @@
 package config;
 
 public class StaticData {
-	public static String EXP_HOME = System.getProperty("user.dir");// "C:/My MSc/ThesisWorks/BigData_Code_Search/CodeSearchBDA/Replication-package";
+	public static String EXP_HOME = System.getProperty("user.dir");// 
+	//public static String EXP_HOME ="C:/My MSc/ThesisWorks/BigData_Code_Search/CodeSearchBDA/Replication-package";
 	public static String FASTTEXT_DIR = EXP_HOME + "/fastText";
 	public static String BAT_FILE_PATH = EXP_HOME + "/scripts/w2vecRunner.bat";
 	public static String BAT_FILE_PATH2 ="fastText\\w2wSim.bat";

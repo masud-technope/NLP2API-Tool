@@ -3,6 +3,9 @@ package core.runner;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import se.data.manager.GitHubEvaluator;
+import se.data.manager.GoogleEvaluator;
+import se.data.manager.SOEvaluator;
 import text.normalizer.TextNormalizer;
 import utility.MiscUtility;
 import code.search.bda.CSBDAManager;
@@ -50,7 +53,8 @@ public class NLP2APIRunner {
 			String outputFile = "./NLP2API-queries.txt";
 			String task = new String();
 			int topk = 10;
-
+			String sengine="google";
+			
 			for (int i = 0; i < args.length; i += 2) {
 				String key = args[i];
 				switch (key) {
@@ -71,6 +75,9 @@ public class NLP2APIRunner {
 					break;
 				case "-task":
 					task = args[i + 1];
+					break;
+				case "-se":
+					sengine=args[i+1];
 					break;
 				}
 			}
@@ -142,6 +149,34 @@ public class NLP2APIRunner {
 				} else {
 					System.out
 							.println("Please enter the reformulated query file");
+				}
+			} else if(task.equals("evaluate-se")){
+				if(topk>0){
+					if(!sengine.isEmpty()){
+						System.out.println("Results for "+sengine);
+						switch (sengine) {
+						case "google":
+							System.out.println("Performance of NL queries");
+							new GoogleEvaluator(topk, true).determinePerformance(topk);
+							System.out.println("Performance using proposed queries");
+							new GoogleEvaluator(topk, false).determinePerformance(topk);
+							break;
+						case "stackoverflow":
+							System.out.println("Performance of NL queries");
+							new SOEvaluator(topk, true).determinePerformance(topk);
+							System.out.println("Performance using proposed queries");
+							new SOEvaluator(topk, false).determinePerformance(topk);
+							break;
+						case "github":
+							System.out.println("Performance of NL queries");
+							new GitHubEvaluator(topk, true).determinePerformance(topk);
+							System.out.println("Performance using proposed queries");
+							new GitHubEvaluator(topk, false).determinePerformance(topk);
+							break;
+						default:
+							break;
+						}
+					}
 				}
 			}
 		} else {
