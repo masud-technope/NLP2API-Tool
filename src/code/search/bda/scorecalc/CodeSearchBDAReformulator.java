@@ -178,7 +178,7 @@ public class CodeSearchBDAReformulator {
 		searchQuery = new TextNormalizer(searchQuery).normalizeTextLight();
 		int TOPK = 10;
 		String suggested = new CodeSearchBDAReformulator(caseNo, searchQuery,
-				TOPK, "both").provideRelevantAPIs();
+				TOPK, "borda").provideRelevantAPIs();
 		System.out.println(suggested);
 	}
 }

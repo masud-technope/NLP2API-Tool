@@ -8,6 +8,7 @@ import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import config.StaticData;
 import api.clustering.APIClusterMaker;
 import utility.ContentWriter;
+import w2vec.W2VecCollector;
 import w2vec.W2WSimCollector;
 import w2vec.WordEmbeddingCollector;
 import data.analytics.WordProximityDetector;
@@ -39,6 +40,7 @@ public class APIKeywordProximityCalc {
 		this.vectorProvided = true;
 	}
 
+	@Deprecated
 	protected HashMap<String, Double> calculateAPIClusterSores() {
 		ArrayList<String> wordList = new ArrayList<>();
 		wordList.addAll(this.queryTerms);
@@ -56,6 +58,7 @@ public class APIKeywordProximityCalc {
 		return acMaker.getClusteringScores();
 	}
 
+	@Deprecated
 	protected HashMap<String, Double> calculateAPIClusterSoresV2() {
 		ArrayList<String> wordList = new ArrayList<>();
 		wordList.addAll(this.queryTerms);
@@ -113,7 +116,7 @@ public class APIKeywordProximityCalc {
 		ArrayList<String> wordList = new ArrayList<>();
 		wordList.addAll(this.queryTerms);
 		wordList.addAll(this.candidateAPIKeys);
-		W2WSimCollector w2w = new W2WSimCollector(wordList);
+		W2VecCollector w2w = new W2VecCollector(wordList);
 		HashMap<String, ArrayList<Double>> vectorMap = null;
 		if (vectorProvided) {
 			vectorMap = this.vectorMap;

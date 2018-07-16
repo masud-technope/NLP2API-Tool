@@ -34,9 +34,15 @@ public class WordEmbeddingCollector {
 		if (this.candidates.isEmpty()) {
 			this.candidates = new ArrayList<String>(developTokens());
 		}
-		W2WSimCollector w2w = new W2WSimCollector(new ArrayList<String>(
+		
+		//windows version
+		/*W2WSimCollector w2w = new W2WSimCollector(new ArrayList<String>(
 				this.candidates));
-		return w2w.getWordVectors();
+		return w2w.getWordVectors(); */
+		
+		//platform-independent version
+		W2VecCollector w2vecColl=new W2VecCollector(this.candidates);
+		return w2vecColl.getWordVectors();
 	}
 
 	public static void main(String[] args) {

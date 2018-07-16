@@ -2,7 +2,9 @@ package data.analytics;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import similarity.CosineMeasure;
+import w2vec.W2VecCollector;
 import w2vec.W2WSimCollector;
 import edu.stanford.nlp.util.ArrayUtils;
 
@@ -33,8 +35,10 @@ public class WordProximityDetector {
 		ArrayList<String> temp = new ArrayList<>();
 		temp.add(this.firstWord);
 		temp.add(this.secondWord);
-		W2WSimCollector w2wcoll = new W2WSimCollector(temp);
-		return w2wcoll.getWordVectors();
+		//W2WSimCollector w2wcoll = new W2WSimCollector(temp);
+		//return w2wcoll.getWordVectors();
+		W2VecCollector w2vcoll=new W2VecCollector(temp);
+		return w2vcoll.getWordVectors();
 	}
 
 	public double determineProximity(ArrayList<Double> firstVec,
