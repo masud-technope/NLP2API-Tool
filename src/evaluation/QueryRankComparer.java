@@ -107,9 +107,9 @@ public class QueryRankComparer {
 		// System.out.println((double) improved / baseRanks.size() + ",\t"
 		// + (double) worsened / baseRanks.size());
 
-		System.out.println((double) improved / baseRanks.size() + ",\t"
-				+ (double) worsened / baseRanks.size() + ",\t"
-				+ (double) preserved / baseRanks.size() + ",\t" + "I/W:"
+		System.out.println("Improved: "+ (double) improved / baseRanks.size() + "\nWorsened: "
+				+ (double) worsened / baseRanks.size() + ",\nPreserved: "
+				+ (double) preserved / baseRanks.size() + "\n" + "I/W: "
 				+ (double) improved / worsened);
 
 		double MRD = 1.0 / (sumMyRR / baseRanks.size()) - 1.0
@@ -119,7 +119,7 @@ public class QueryRankComparer {
 		double worMRD = 1.0 / (sumWorRR / improved) - 1.0
 				/ (sumBaseRR / baseRanks.size());
 
-		System.out.println((double) sumRankImproved / improved + "\t"
+		System.out.println("MRD-I: "+ (double) sumRankImproved / improved + "\t MRD-W: "
 				+ (double) sumRankWorsened / worsened);
 
 		// System.out.println("MRD" + MRD);

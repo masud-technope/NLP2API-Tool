@@ -45,8 +45,8 @@ public class BDACodeSeachPerformanceCalc {
 		 * rsearch.performRACKCodeSearch()); System.out.println("MRR@" + TOPK +
 		 * ": " + rsearch.performRACKCodeSearchForMRR());
 		 */
-		System.out.println(rsearch.performRACKCodeSearch() + ",\t"
-				+ rsearch.performRACKCodeSearchForMRR()+",");
+		System.out.println("Hit@"+TOPK+": "+ rsearch.performRACKCodeSearch() + "\nMRR@"+TOPK+": "
+				+ rsearch.performRACKCodeSearchForMRR());
 	}
 
 	public static void main(String[] args) {

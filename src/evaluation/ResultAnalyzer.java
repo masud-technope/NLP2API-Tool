@@ -23,8 +23,8 @@ public class ResultAnalyzer {
 			boolean sampled) {
 		// variable initialization
 		this.strictMatching = strictMatching;
-		this.oracleFile = StaticData.EXP_HOME + "/"+StaticData.ORACLE_FILE;
-		this.resultFile =  resultKey;
+		this.oracleFile = StaticData.EXP_HOME + "/" + StaticData.ORACLE_FILE;
+		this.resultFile = resultKey;
 		this.results = new HashMap<>();
 		this.golddata = new HashMap<>();
 		this.golddata = new APILoader(oracleFile).getGoldAPIMap();
@@ -42,7 +42,7 @@ public class ResultAnalyzer {
 	public ResultAnalyzer(HashMap<Integer, ArrayList<String>> resultMap, int K,
 			boolean strictMatching) {
 		this.strictMatching = strictMatching;
-		this.oracleFile = StaticData.EXP_HOME + "/"+StaticData.ORACLE_FILE;
+		this.oracleFile = StaticData.EXP_HOME + "/" + StaticData.ORACLE_FILE;
 		this.results = resultMap;
 		this.golddata = new HashMap<>();
 		this.golddata = new APILoader().getGoldAPIMap();
@@ -299,29 +299,16 @@ public class ResultAnalyzer {
 				}
 			}
 
-			//System.out.println();
+			// System.out.println();
 			// System.out.println("K=" + K);
 			if (!sampled) {
-				/*
-				 * System.out.println(K + "=" + (double) correct_sum /
-				 * this.golddata.size() + ",\t"); System.out.println(rrank_sum /
-				 * this.golddata.size() + ",\t"); System.out.println(preck_sum /
-				 * this.golddata.size() + ",\t"); System.out.println(recall_sum
-				 * / this.golddata.size() + ",\t"); System.out.println();
-				 */
-				System.out.println((double) correct_sum/this.golddata.size()+",\t"+rrank_sum /
-						 this.golddata.size()+",\t"+preck_sum /this.golddata.size()+",\t"+recall_sum
-						 /this.golddata.size()+",\t"+fmeasure_sum/this.golddata.size()+",");
-				//System.out.println("Dataset:"+this.golddata.size());
-
+				System.out.println("Hit@" + K + ": " + (double) correct_sum
+						/ this.golddata.size() + "\nMRR@" + K + ": "
+						+ rrank_sum / this.golddata.size() + "\nMAP@" + K
+						+ ": " + preck_sum / this.golddata.size() + "\nMR@"
+						+ K + ": " + recall_sum / this.golddata.size());
 			} else {
-				/*
-				 * System.out.println(K + "=" + (double) correct_sum /
-				 * selectedTasks.size() + ",\t"); System.out.println(rrank_sum /
-				 * selectedTasks.size() + ",\t"); System.out.println(preck_sum /
-				 * selectedTasks.size() + ",\t"); System.out.println(recall_sum
-				 * / selectedTasks.size() + ",\t"); System.out.println();
-				 */
+
 			}
 
 		} catch (Exception exc) {

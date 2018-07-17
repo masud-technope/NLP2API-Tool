@@ -2,15 +2,11 @@ package code.search.bda.scorecalc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
-
 import config.StaticData;
-import api.clustering.APIClusterMaker;
 import utility.ContentWriter;
-import w2vec.W2VecCollector;
-import w2vec.W2WSimCollector;
-import w2vec.WordEmbeddingCollector;
+import w2vec.python.W2VecCollector;
+import w2vec.python.WordEmbeddingCollector;
 import data.analytics.WordProximityDetector;
 import edu.stanford.nlp.util.ArrayUtils;
 
@@ -40,36 +36,6 @@ public class APIKeywordProximityCalc {
 		this.vectorProvided = true;
 	}
 
-	@Deprecated
-	protected HashMap<String, Double> calculateAPIClusterSores() {
-		ArrayList<String> wordList = new ArrayList<>();
-		wordList.addAll(this.queryTerms);
-		wordList.addAll(this.candidateAPIKeys);
-		W2WSimCollector w2w = new W2WSimCollector(wordList);
-		HashMap<String, ArrayList<Double>> vectorMap = w2w.getWordVectors();
-		HashMap<String, ArrayList<Double>> qvectorMap = new HashMap<>();
-		for (String qterm : this.queryTerms) {
-			if (vectorMap.containsKey(qterm)) {
-				qvectorMap.put(qterm, vectorMap.get(qterm));
-				vectorMap.remove(qterm);
-			}
-		}
-		APIClusterMaker acMaker = new APIClusterMaker(qvectorMap, vectorMap);
-		return acMaker.getClusteringScores();
-	}
-
-	@Deprecated
-	protected HashMap<String, Double> calculateAPIClusterSoresV2() {
-		ArrayList<String> wordList = new ArrayList<>();
-		wordList.addAll(this.queryTerms);
-		wordList.addAll(this.candidateAPIKeys);
-		W2WSimCollector w2w = new W2WSimCollector(wordList);
-		HashMap<String, ArrayList<Double>> vectorMap = w2w.getWordVectors();
-		APIClusterMaker acMaker = new APIClusterMaker(queryTerms, vectorMap);
-		return acMaker.getClusteringScoresV2();
-	}
-
-	
 
 	protected void saveAPICandidates(int caseID) {
 		// save the API candidates

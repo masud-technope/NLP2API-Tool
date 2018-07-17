@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import similarity.CosineMeasure;
-import w2vec.W2VecCollector;
 import w2vec.W2WSimCollector;
+import w2vec.python.W2VecCollector;
 import edu.stanford.nlp.util.ArrayUtils;
 
 public class WordProximityDetector {

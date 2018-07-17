@@ -1,4 +1,4 @@
-package w2vec;
+package w2vec.python;
 
 import java.util.ArrayList;
 import java.util.HashMap;

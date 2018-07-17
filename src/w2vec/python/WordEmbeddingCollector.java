@@ -1,9 +1,10 @@
-package w2vec;
+package w2vec.python;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+
 import utility.ContentLoader;
 import config.StaticData;
 
