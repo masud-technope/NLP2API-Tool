@@ -139,7 +139,6 @@ public class CodeSearchBDAReformulator {
 
 		// normalize the scores
 		bscoreMap = normalizedScores(bscoreMap);
-
 		
 		if (scoreKey.equals("borda")) {
 			//always save the candidates
