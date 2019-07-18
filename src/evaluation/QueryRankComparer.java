@@ -1,3 +1,11 @@
+
+/*************
+ * 
+ * @author MasudRahman
+ * Comparer between two set of queries in terms of their query effectiveness.
+ * 
+ */
+
 package evaluation;
 
 import java.util.ArrayList;

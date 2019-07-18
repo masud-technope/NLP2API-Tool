@@ -1,3 +1,10 @@
+/*****
+ * 
+ * @author MasudRahman
+ *
+ * This class represents each query token and its scores
+ */
+
 package code.search.bda;
 
 public class QueryToken {

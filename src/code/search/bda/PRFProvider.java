@@ -1,3 +1,10 @@
+/*******
+ * 
+ * @author MasudRahman
+ * Pseudo-relevance provider for NLP2API
+ */
+
+
 package code.search.bda;
 
 import java.util.ArrayList;

@@ -1,3 +1,11 @@
+
+/******
+ * 
+ * @author MasudRahman
+ * Word Embedding collector
+ * 
+ */
+
 package w2vec.python;
 
 import java.io.File;

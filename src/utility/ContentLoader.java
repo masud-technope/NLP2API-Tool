@@ -1,3 +1,11 @@
+
+/*****
+ * 
+ * @author MasudRahman
+ * Utility class for file content loading.
+ * 
+ */
+
 package utility;
 
 import java.io.BufferedReader;

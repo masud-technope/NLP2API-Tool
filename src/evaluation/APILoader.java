@@ -1,3 +1,10 @@
+
+/****
+ * 
+ * @author MasudRahman
+ * Loads the ground truth API classes for the queries.
+ */
+
 package evaluation;
 
 import java.util.ArrayList;

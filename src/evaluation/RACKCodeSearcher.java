@@ -1,3 +1,11 @@
+
+/**********
+ * 
+ * @author MasudRahman
+ * Code search performance calculator for a given set of queries.
+ * 
+ */
+
 package evaluation;
 
 import java.util.HashMap;

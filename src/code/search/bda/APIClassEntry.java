@@ -1,3 +1,10 @@
+/****
+ * 
+ * @author MasudRahman
+ * This class deals individual API class and corresponding scores during ranking
+ */
+
+
 package code.search.bda;
 
 public class APIClassEntry {

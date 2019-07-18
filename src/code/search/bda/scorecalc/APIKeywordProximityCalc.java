@@ -1,3 +1,9 @@
+
+/**********
+ * @author MasudRahman
+ * This class determines the semantic proximity between the query keyword and a candidate API class.
+ */
+
 package code.search.bda.scorecalc;
 
 import java.util.ArrayList;

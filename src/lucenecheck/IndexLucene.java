@@ -1,3 +1,12 @@
+
+/******
+ * 
+ * @author MasudRahman
+ * Creates an index for a corpus where the corpus is a list of code files.
+ * 
+ * 
+ */
+
 package lucenecheck;
 
 import java.io.BufferedReader;

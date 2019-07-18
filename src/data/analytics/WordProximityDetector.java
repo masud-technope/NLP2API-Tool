@@ -1,3 +1,11 @@
+
+/*******
+ * 
+ * @author MasudRahman
+ * Semantic proximity calculator given the word embedding.
+ * 
+ */
+
 package data.analytics;
 
 import java.util.ArrayList;

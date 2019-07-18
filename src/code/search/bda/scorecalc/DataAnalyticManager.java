@@ -1,3 +1,11 @@
+
+/******
+ * 
+ * @author MasudRahman
+ * Enriches a API class graph with weighted edges where the weight comes from the word embedddings.
+ * 
+ */
+
 package code.search.bda.scorecalc;
 
 import java.util.ArrayList;

@@ -1,3 +1,10 @@
+
+/*****
+ * @author MasudRahman
+ * IDF calculator from a corpus index.
+ * 
+ */
+
 package code.search.bda.scorecalc;
 
 import java.io.File;

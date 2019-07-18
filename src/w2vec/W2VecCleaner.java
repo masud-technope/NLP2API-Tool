@@ -1,3 +1,11 @@
+
+/****
+ * 
+ * @author MasudRahman
+ * Utility cleaning class
+ * 
+ */
+
 package w2vec;
 
 import java.util.ArrayList;

@@ -1,3 +1,10 @@
+
+/******
+ * @author MasudRahman
+ * The actual class that reformulates a given NL query into relevant API classes.
+ * 
+ */
+
 package code.search.bda.scorecalc;
 
 import java.util.ArrayList;

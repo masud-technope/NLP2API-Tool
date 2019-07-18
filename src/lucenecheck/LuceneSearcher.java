@@ -1,3 +1,12 @@
+
+/******
+ * 
+ * 
+ * @author MasudRahman
+ * The code search engine, that returns relevant code from the corpus against a query.
+ * 
+ */
+
 package lucenecheck;
 
 import java.io.File;

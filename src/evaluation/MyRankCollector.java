@@ -1,3 +1,11 @@
+
+/******
+ * 
+ * @author MasudRahman
+ * Rank collector for the proposed search queries.
+ * 
+ */
+
 package evaluation;
 
 import java.io.File;

@@ -1,3 +1,11 @@
+
+/*******
+ * 
+ * @author MasudRahman
+ * Performance calculator for the proposed search queries.
+ * 
+ */
+
 package evaluation;
 
 import java.util.HashMap;

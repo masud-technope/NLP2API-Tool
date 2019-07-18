@@ -1,3 +1,9 @@
+
+/******
+ * @author MasudRahman
+ * It calculates the Borda score for each candidate API from multiple ranked lists.
+ */
+
 package code.search.bda.scorecalc;
 
 import java.util.ArrayList;

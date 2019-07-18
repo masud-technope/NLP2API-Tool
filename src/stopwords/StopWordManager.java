@@ -1,3 +1,11 @@
+
+/*****
+ * 
+ * @author MasudRahman
+ * Stop word filtration class
+ * 
+ */
+
 package stopwords;
 
 import java.io.File;

@@ -1,3 +1,8 @@
+
+/***********
+ * SO corpus utility class
+ */
+
 package data.cleaner;
 
 import java.io.File;

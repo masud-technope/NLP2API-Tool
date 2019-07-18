@@ -1,3 +1,9 @@
+
+/**********
+ * @author MasudRahman
+ * This class creates the word network among the API classes from SO code segments based on co-occurrences.
+ */
+
 package code.search.bda;
 
 import java.util.ArrayList;

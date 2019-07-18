@@ -1,3 +1,11 @@
+
+/*****
+ * 
+ * @author MasudRahman
+ * Utility class for writing contents to a file.
+ * 
+ */
+
 package utility;
 
 import java.io.File;

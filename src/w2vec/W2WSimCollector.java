@@ -1,7 +1,15 @@
+/******
+ * 
+ * @author MasudRahman
+ * Word2vec similarity between two words
+ * 
+ */
+
 package w2vec;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 
 public class W2WSimCollector {
 

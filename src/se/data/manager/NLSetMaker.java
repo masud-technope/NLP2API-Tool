@@ -1,3 +1,11 @@
+
+/*****
+ * 
+ * @author MasudRahman
+ * Performance of the NL queries.
+ * 
+ */
+
 package se.data.manager;
 
 import java.io.File;

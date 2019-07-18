@@ -1,3 +1,11 @@
+
+/*****
+ * 
+ * @author MasudRahman
+ * Utility class for loading the suggested API classes by NLP2API
+ * 
+ */
+
 package utility;
 
 import java.util.ArrayList;

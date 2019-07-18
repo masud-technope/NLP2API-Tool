@@ -1,3 +1,10 @@
+
+/******
+ * 
+ * @author MasudRahman
+ * Stores all static values and configurations used by the tool.
+ */
+
 package config;
 
 public class StaticData {

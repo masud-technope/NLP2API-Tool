@@ -1,3 +1,11 @@
+
+/*****
+ * 
+ * @author MasudRahman
+ * Miscellaneous utility class.
+ * 
+ */
+
 package utility;
 
 import java.util.ArrayList;

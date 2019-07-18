@@ -1,3 +1,11 @@
+
+/*******
+ * @author MasudRahman
+ * This class provides the actual queries from the PRF documents collected from SO.
+ * 
+ */
+
+
 package code.search.bda;
 
 import java.util.ArrayList;

@@ -1,3 +1,11 @@
+
+/*******
+ * 
+ * @author MasudRahman
+ * Baseline query rank calculator
+ * 
+ */
+
 package evaluation;
 
 import java.util.HashMap;

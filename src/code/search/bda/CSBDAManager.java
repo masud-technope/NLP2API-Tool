@@ -1,3 +1,11 @@
+/*****
+ * 
+ * 
+ * @author MasudRahman
+ * The main class for this tool. It collects the relevant API classes and does the evaluation.
+ */
+
+
 package code.search.bda;
 
 import java.util.ArrayList;
@@ -10,6 +18,7 @@ import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 import evaluation.BDACodeSeachPerformanceCalc;
 import evaluation.QueryRankComparer;
 import evaluation.ResultAnalyzer;
+
 
 public class CSBDAManager {
 

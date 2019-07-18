@@ -1,3 +1,12 @@
+
+/*****
+ * 
+ * @author MasudRahman
+ * Normalizes a given text by stop word removal, and token splitting.
+ * 
+ */
+
+
 package text.normalizer;
 
 import java.util.ArrayList;

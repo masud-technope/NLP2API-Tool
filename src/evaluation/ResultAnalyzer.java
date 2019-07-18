@@ -1,3 +1,11 @@
+
+/******
+ * 
+ * @author MasudRahman
+ * Analyzes various results for the queries such as Hit@K, MAP, MRR and MR
+ * 
+ */
+
 package evaluation;
 
 import java.io.File;

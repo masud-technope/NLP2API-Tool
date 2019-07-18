@@ -1,3 +1,11 @@
+
+/******
+ * 
+ * @author MasudRahman
+ * Word2vec collector from FastText
+ * 
+ */
+
 package w2vec;
 
 import java.io.IOException;

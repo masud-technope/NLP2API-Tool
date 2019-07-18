@@ -1,3 +1,11 @@
+
+/************
+ * 
+ * @author MasudRahman
+ * Word2vec collector using PYTHON
+ * 
+ */
+
 package w2vec.python;
 
 import java.util.ArrayList;

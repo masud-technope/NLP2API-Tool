@@ -1,3 +1,11 @@
+/*****
+ * 
+ * 
+ * @author MasudRahman
+ * It collects candidate API classes from relevant Stack Overflow threads for each given query 
+ */
+
+
 package code.search.bda;
 
 import java.util.ArrayList;
@@ -7,6 +15,7 @@ import utility.ContentWriter;
 import utility.MiscUtility;
 import utility.QueryLoader;
 import config.StaticData;
+
 
 public class CandidateManager {
 
@@ -39,21 +48,19 @@ public class CandidateManager {
 			switch (prfDocKey) {
 			case "qc":
 				candidateQR_PR = prqProvider.getPRFQueryTerms();
-				//if (StaticData.COMBINE_PR_TFIDF) {
-					indexFolder = StaticData.EXP_HOME + "/dataset/"
-							+ StaticData.SO_QUESTION_CODE_INDEX;
-					candidateQR_TI = prqProvider
-							.getPRFQueryTermsTFIDF(indexFolder);
-				//}
+				// if (StaticData.COMBINE_PR_TFIDF) {
+				indexFolder = StaticData.EXP_HOME + "/dataset/"
+						+ StaticData.SO_QUESTION_CODE_INDEX;
+				candidateQR_TI = prqProvider.getPRFQueryTermsTFIDF(indexFolder);
+				// }
 				break;
 			case "ac":
 				candidateQR_PR = prqProvider.getPRFQueryTerms();
-				//if (StaticData.COMBINE_PR_TFIDF) {
-					indexFolder = StaticData.EXP_HOME + "/dataset/"
-							+ StaticData.SO_ANSWER_CODE_INDEX;
-					candidateQR_TI = prqProvider
-							.getPRFQueryTermsTFIDF(indexFolder);
-				//}
+				// if (StaticData.COMBINE_PR_TFIDF) {
+				indexFolder = StaticData.EXP_HOME + "/dataset/"
+						+ StaticData.SO_ANSWER_CODE_INDEX;
+				candidateQR_TI = prqProvider.getPRFQueryTermsTFIDF(indexFolder);
+				// }
 				break;
 			case "qac":
 				candidateQR_PR = prqProvider.getPRFQueryTerms();

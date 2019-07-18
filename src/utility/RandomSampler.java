@@ -1,3 +1,11 @@
+
+/*****
+ * 
+ * @author MasudRahman
+ * Utility class for random sampling from a list.
+ * 
+ */
+
 package utility;
 
 import java.util.ArrayList;

@@ -1,3 +1,11 @@
+
+/*****
+ * 
+ * @author MasudRahman
+ * Performance improvement calculator for GitHub code results.
+ * 
+ */
+
 package se.data.manager;
 
 import java.util.ArrayList;

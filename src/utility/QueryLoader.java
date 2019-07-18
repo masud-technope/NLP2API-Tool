@@ -1,3 +1,11 @@
+
+/*****
+ * 
+ * @author MasudRahman
+ * Utility class for loading the search queries.
+ * 
+ */
+
 package utility;
 
 import java.util.ArrayList;

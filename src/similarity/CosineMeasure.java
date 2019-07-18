@@ -1,3 +1,11 @@
+
+/*****
+ * 
+ * @author MasudRahman
+ * Calculates cosine similarity between two sets of items.
+ * 
+ */
+
 package similarity;
 
 public class CosineMeasure {
