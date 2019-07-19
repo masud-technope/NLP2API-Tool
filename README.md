@@ -29,7 +29,7 @@ author={Rahman, M. M. and Roy, C. K.},
 booktitle={Proc. ICSME}, 
 title={Effective Reformulation of Query for Code Search using Crowdsourced Knowledge and Extra-Large Data Analytics}, 
 year={2018}, 
-pages={12} 
+pages={ 516--527} 
 }
 ```
 
@@ -39,7 +39,7 @@ author={Rahman, M. M. and Roy, C. K.},
 booktitle={Proc. ICSME}, 
 title={NLP2API: Query Reformulation for Code Search using Crowdsourced Knowledge and Extra-Large Data Analytics }, 
 year={2018}, 
-pages={1} 
+pages={714} 
 }
 ```
 -------------------------------------------------------------------------
