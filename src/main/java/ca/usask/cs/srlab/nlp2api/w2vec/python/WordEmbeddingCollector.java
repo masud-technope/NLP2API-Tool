@@ -15,6 +15,7 @@ import java.util.HashSet;
 
 import ca.usask.cs.srlab.nlp2api.utility.ContentLoader;
 import ca.usask.cs.srlab.nlp2api.config.StaticData;
+import ca.usask.cs.srlab.nlp2api.w2vec.W2VecCollector;
 
 public class WordEmbeddingCollector {
 

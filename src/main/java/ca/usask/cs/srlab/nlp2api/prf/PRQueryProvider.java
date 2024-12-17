@@ -42,7 +42,6 @@ public class PRQueryProvider {
 	}
 
 	protected ArrayList<String> normalizeDocuments() {
-		// normalize the documents
 		ArrayList<String> normDocs = new ArrayList<>();
 		for (String content : this.prfDocuments) {
 			ArrayList<String> normalized = new ArrayList<>();
@@ -53,7 +52,6 @@ public class PRQueryProvider {
 				break;
 			case "qt":
 			case "at":
-				// analyze text like texts
 				normalized = cleanText(content);
 				break;
 			case "qc":
@@ -70,7 +68,6 @@ public class PRQueryProvider {
 	}
 
 	protected ArrayList<String> cleanText(String content) {
-		// cleaning the texts
 		ArrayList<String> temp = new ArrayList<>();
 		Document doc = Jsoup.parse(content);
 		Elements elems = doc.select("p,li,div");
@@ -82,44 +79,38 @@ public class PRQueryProvider {
 	}
 
 	protected ArrayList<String> cleanCode(String content) {
-		// cleaning the code
 		ArrayList<String> temp = new ArrayList<>();
-		// String[] lines = content.split("\n");
-		// for (String line : lines) {
 		String normalized = new TextNormalizer(content).normalizeSimpleCode();
 		temp.add(normalized);
-		// }
 		return temp;
 	}
 
 	protected DirectedGraph<String, DefaultEdge> developTokenGraph(
 			ArrayList<String> lines) {
-		// develop token graph
 		return new WordNetworkMaker(lines).createWordNetwork();
 	}
 
 	protected HashMap<String, Double> getTokenDB(
 			DirectedGraph<String, DefaultEdge> graph) {
-		HashMap<String, Double> tokendb = new HashMap<>();
+		HashMap<String, Double> tokenDB = new HashMap<>();
 		HashSet<String> nodes = new HashSet<String>(graph.vertexSet());
 		for (String node : nodes) {
-			tokendb.put(node, 0.0);
+			tokenDB.put(node, 0.0);
 		}
-		return tokendb;
+		return tokenDB;
 	}
 
 	protected HashMap<String, Double> getTokenDBWeighted(
-			SimpleDirectedWeightedGraph<String, DefaultWeightedEdge> wgraph) {
-		HashMap<String, Double> tokendb = new HashMap<>();
-		HashSet<String> nodes = new HashSet<String>(wgraph.vertexSet());
+			SimpleDirectedWeightedGraph<String, DefaultWeightedEdge> wGraph) {
+		HashMap<String, Double> tokenDB = new HashMap<>();
+		HashSet<String> nodes = new HashSet<String>(wGraph.vertexSet());
 		for (String node : nodes) {
-			tokendb.put(node, 0.0);
+			tokenDB.put(node, 0.0);
 		}
-		return tokendb;
+		return tokenDB;
 	}
 
 	public ArrayList<String> getPRFQueryTerms() {
-		// get PRF query terms
 		ArrayList<String> normalizedPRF = normalizeDocuments();
 		DirectedGraph<String, DefaultEdge> graph = developTokenGraph(normalizedPRF);
 		HashMap<String, Double> tokendb = getTokenDB(graph);
@@ -137,8 +128,8 @@ public class PRQueryProvider {
 		return expansions;
 	}
 
+	@Deprecated
 	public ArrayList<String> getPRFQueryTermsWeighted() {
-		// get PRF query terms
 		ArrayList<String> normalizedPRF = normalizeDocuments();
 		DirectedGraph<String, DefaultEdge> graph = developTokenGraph(normalizedPRF);
 		SimpleDirectedWeightedGraph<String, DefaultWeightedEdge> wgraph = new DataAnalyticManager(
@@ -169,7 +160,6 @@ public class PRQueryProvider {
 	}
 
 	public ArrayList<String> getPRFQueryTermsTFIDF(String indexFolder) {
-		// collect TF-IDF by simple TF-IDF
 		ArrayList<String> normalizedPRF = normalizeDocuments();
 		HashMap<Integer, String> docMap = new HashMap<>();
 		for (int i = 0; i < normalizedPRF.size(); i++) {
@@ -182,16 +172,16 @@ public class PRQueryProvider {
 		ArrayList<String> keys = makeItLowerCase(new ArrayList<String>(
 				corpusTF.keySet()));
 
-		IDFCalc icalc = new IDFCalc(indexFolder, keys);
-		HashMap<String, Double> idfMap = icalc.calculateIDFOnly();
+		IDFCalc iCalc = new IDFCalc(indexFolder, keys);
+		HashMap<String, Double> idfMap = iCalc.calculateIDFOnly();
 		HashMap<String, Double> tfidfMap = new HashMap<>();
 		for (String key : corpusTF.keySet()) {
-			String lckey = key.toLowerCase();
+			String lcKey = key.toLowerCase();
 			int tf = corpusTF.get(key);
-			if (idfMap.containsKey(lckey)) {
+			if (idfMap.containsKey(lcKey)) {
 				// log transformation
 				double logTF = 1 + Math.log(tf);
-				double score = logTF * idfMap.get(lckey);
+				double score = logTF * idfMap.get(lcKey);
 				tfidfMap.put(key, score);
 			}
 		}
@@ -242,9 +232,5 @@ public class PRQueryProvider {
 			}
 		}
 		return expansions;
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 	}
 }

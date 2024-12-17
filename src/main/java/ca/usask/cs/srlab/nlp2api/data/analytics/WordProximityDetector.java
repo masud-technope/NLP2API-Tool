@@ -11,7 +11,7 @@ package ca.usask.cs.srlab.nlp2api.data.analytics;
 import java.util.ArrayList;
 import java.util.HashMap;
 import ca.usask.cs.srlab.nlp2api.similarity.CosineMeasure;
-import ca.usask.cs.srlab.nlp2api.w2vec.python.W2VecCollector;
+import ca.usask.cs.srlab.nlp2api.w2vec.W2VecCollector;
 import edu.stanford.nlp.util.ArrayUtils;
 
 public class WordProximityDetector {
@@ -31,10 +31,6 @@ public class WordProximityDetector {
 		this.firstWord = firstWord;
 		this.secondWord = secondWord;
 		this.proximityMap = developProximity();
-	}
-
-	public WordProximityDetector() {
-		// default constructor
 	}
 
 	protected HashMap<String, ArrayList<Double>> developProximity() {

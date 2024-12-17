@@ -59,13 +59,10 @@ public class LuceneSearcher {
 
 	@Deprecated
 	public LuceneSearcher(String searchQuery, String repository) {
-		// initialization
-		// this.bugID = bugID;
 		this.repository = repository;
 		this.indexFolder = StaticData.EXP_HOME + "/lucene/index/" + repository;
 		this.searchQuery = searchQuery;
 		this.results = new ArrayList<>();
-		// this.goldset = new ArrayList<>();
 	}
 
 	public LuceneSearcher(int caseNo, String searchQuery, String indexFolder) {
@@ -84,7 +81,6 @@ public class LuceneSearcher {
 	}
 
 	public ArrayList<String> performVSMSearch(int TOPK) {
-		// performing Lucene search
 		try {
 			if (reader == null)
 				reader = DirectoryReader.open(FSDirectory.open(new File(
@@ -103,28 +99,20 @@ public class LuceneSearcher {
 				for (int i = 0; i < TOPK; i++) {
 					ScoreDoc item = hits[i];
 					Document doc = searcher.doc(item.doc);
-					// int docID=item.doc;
 					String fileURL = doc.get("path");
 					fileURL = fileURL.replace('\\', '/');
-					// System.out.println("Doc ID:"+docID);
-					// Terms terms=reader.getTermVector(docID, "contents");
-					// System.out.println(doc.get("contents"));
 
-					String APIName = new File(fileURL).getName().split("\\.")[0];
-					this.results.add(APIName);
+					String fileName = new File(fileURL).getName().split("\\.")[0];
+					this.results.add(fileName);
 				}
-				// showing gold set
-				// showGoldSet();
-				// getGoldSet();
 			}
 		} catch (Exception e) {
-			// handle the exception
+			e.printStackTrace();
 		}
 		return this.results;
 	}
 
 	public ArrayList<String> performVSMSearch() {
-		// performing Lucene search
 		try {
 			if (reader == null)
 				reader = DirectoryReader.open(FSDirectory.open(new File(
@@ -143,22 +131,14 @@ public class LuceneSearcher {
 				for (int i = 0; i < hits.length; i++) {
 					ScoreDoc item = hits[i];
 					Document doc = searcher.doc(item.doc);
-					// int docID=item.doc;
 					String fileURL = doc.get("path");
 					fileURL = fileURL.replace('\\', '/');
-					// System.out.println("Doc ID:"+docID);
-					// Terms terms=reader.getTermVector(docID, "contents");
-					// System.out.println(doc.get("contents"));
-
-					String APIName = new File(fileURL).getName().split("\\.")[0];
-					this.results.add(APIName);
+					String fileName = new File(fileURL).getName().split("\\.")[0];
+					this.results.add(fileName);
 				}
-				// showing gold set
-				// showGoldSet();
-				// getGoldSet();
 			}
 		} catch (Exception e) {
-			// handle the exception
+			e.printStackTrace();
 		}
 		return this.results;
 	}
@@ -200,20 +180,17 @@ public class LuceneSearcher {
 				}
 			}
 		} catch (Exception e) {
-			// handle the exception
+			e.printStackTrace();
 		}
 		return resultMap;
 	}
 
 	public int getFirstGoldRank(int key, int TOPK) {
-		// getting the first gold rank
 		ArrayList<String> results = performVSMSearch(TOPK);
 		int rank = -1;
 		for (String fileURL : results) {
-			// rank++;
 			int fileID = Integer.parseInt(fileURL.trim());
 			if (fileID == key) {
-				// rank++;
 				rank = results.indexOf(fileURL);
 				return rank;
 			}
@@ -222,36 +199,15 @@ public class LuceneSearcher {
 	}
 
 	public int getFirstGoldRank(int key) {
-		// getting the first gold rank
 		ArrayList<String> results = performVSMSearch();
 		int rank = -1;
 		for (String fileURL : results) {
-			// rank++;
 			int fileID = Integer.parseInt(fileURL.trim());
 			if (fileID == key) {
-				// rank++;
 				rank = results.indexOf(fileURL);
 				return rank;
 			}
 		}
 		return rank;
-	}
-
-	public static void main(String[] args) {
-		// int bugID = 41186;
-		String repository = "chcomment";
-		String searchQuery = "How do I move a file in JDK 7";
-		String indexFolder = StaticData.EXP_HOME
-				+ "/dataset/qeck-corpus-ext-index";
-		LuceneSearcher searcher = new LuceneSearcher(0, searchQuery,
-				indexFolder);
-		int TOPK = 10;
-		ArrayList<String> results = searcher.performVSMSearch(TOPK);
-		System.out.println(results);
-		/*
-		 * for(String postID: results){
-		 * System.out.println(ContentLoader.loadFileContent
-		 * (StaticData.EXP_HOME+"/dataset/question/"+postID+".txt")); }
-		 */
 	}
 }

@@ -12,6 +12,6 @@ public class APIClassEntry {
 	public double bordaScore;
 	public double initQuerySimScore;
 	public double titleSimScore;
-	public double qtextSimScore;
-	public double atextSimScore;
+	public double qTextSimScore;
+	public double aTextSimScore;
 }

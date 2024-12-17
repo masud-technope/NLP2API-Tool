@@ -30,7 +30,6 @@ public class BaselinePerfCalc {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int TOPK = 10;
 		new BaselinePerfCalc(TOPK).calculateBaseQueryPerformance();
 	}

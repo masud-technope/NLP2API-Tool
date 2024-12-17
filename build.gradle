@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     implementation fileTree(dir: 'src/main/resources/nlp2api.lib', include: ['*.jar'])
+    implementation('com.googlecode.json-simple:json-simple:1.1')
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }

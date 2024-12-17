@@ -19,28 +19,28 @@ import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 public class WordNetworkMaker {
 
 	ArrayList<String> sentences;
-	public SimpleDirectedWeightedGraph<String, DefaultWeightedEdge> wgraph;
+	public SimpleDirectedWeightedGraph<String, DefaultWeightedEdge> wGraph;
 	public DirectedGraph<String, DefaultEdge> graph;
-	HashMap<String, QueryToken> tokendb;
+	HashMap<String, QueryToken> tokenDB;
 	final int WINDOW_SIZE = 2;
 
 	public WordNetworkMaker(ArrayList<String> sentences) {
 		// initializing both graphs
 		this.sentences = sentences;
-		this.wgraph = new SimpleDirectedWeightedGraph<>(
+		this.wGraph = new SimpleDirectedWeightedGraph<>(
 				DefaultWeightedEdge.class);
 		this.graph = new DefaultDirectedGraph<>(DefaultEdge.class);
-		this.tokendb = new HashMap<>();
+		this.tokenDB = new HashMap<>();
 	}
 
 	public WordNetworkMaker(ArrayList<String> sentences,
 			HashMap<String, ArrayList<String>> alltermMap) {
 		// initializing both graphs
 		this.sentences = sentences;
-		this.wgraph = new SimpleDirectedWeightedGraph<>(
+		this.wGraph = new SimpleDirectedWeightedGraph<>(
 				DefaultWeightedEdge.class);
 		this.graph = new DefaultDirectedGraph<>(DefaultEdge.class);
-		this.tokendb = new HashMap<>();
+		this.tokenDB = new HashMap<>();
 		// adjacency initialization
 		// temporary,just for now.
 		// this.adjacent = new AdjacencyScoreProvider(sentences, alltermMap);
@@ -98,15 +98,15 @@ public class WordNetworkMaker {
 		// populating token dictionary
 		HashSet<String> nodes = new HashSet<>();
 		if (weighted)
-			nodes.addAll(wgraph.vertexSet());
+			nodes.addAll(wGraph.vertexSet());
 		else
 			nodes.addAll(graph.vertexSet());
 		for (String vertex : nodes) {
 			QueryToken qtoken = new QueryToken();
 			qtoken.token = vertex;
-			this.tokendb.put(vertex, qtoken);
+			this.tokenDB.put(vertex, qtoken);
 		}
-		return this.tokendb;
+		return this.tokenDB;
 	}
 
 	protected ArrayList<String> collectTopTokens(

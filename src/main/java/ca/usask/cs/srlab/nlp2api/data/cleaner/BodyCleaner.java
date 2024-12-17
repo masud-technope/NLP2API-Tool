@@ -51,7 +51,8 @@ public class BodyCleaner {
 
 	protected void cleanTheBody() {
 		File[] files = new File(this.orgFolder).listFiles();
-		for (File f : files) {
+        assert files != null;
+        for (File f : files) {
 			ArrayList<String> lines = ContentLoader.getAllLinesOptList(f
 					.getAbsolutePath());
 			String postHTML = MiscUtility.list2Str(lines);
@@ -62,10 +63,5 @@ public class BodyCleaner {
 			String outCodeFile = this.normFolderCode + "/" + f.getName();
 			saveBodyCode(outCodeFile, normCode);
 		}
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new BodyCleaner().cleanTheBody();
 	}
 }

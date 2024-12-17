@@ -13,15 +13,16 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
+import ca.usask.cs.srlab.nlp2api.config.StaticData;
 import ca.usask.cs.srlab.nlp2api.utility.ContentLoader;
 import ca.usask.cs.srlab.nlp2api.utility.MiscUtility;
 
 public class StopWordManager {
 
 	public ArrayList<String> stopList;
-	String stopDir = "./data/stop-words-english-total.txt";
-	String javaKeywordFile = "./data/java-keywords.txt";
-	String javaLangKeywordFile = "./data/java-lang-keywords.txt";
+	String stopDir = StaticData.EXP_HOME + "/data/stop-words-english-total.txt";
+	String javaKeywordFile = StaticData.EXP_HOME + "/data/java-keywords.txt";
+	String javaLangKeywordFile = StaticData.EXP_HOME +"/data/java-lang-keywords.txt";
 
 	public StopWordManager() {
 		// initialize the Hash set

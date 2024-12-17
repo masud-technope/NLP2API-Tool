@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import org.apache.commons.math3.stat.descriptive.rank.Median;
+import org.json.simple.JSONArray;
 
 public class MiscUtility {
 
@@ -126,4 +127,13 @@ public class MiscUtility {
 		return (int) med.evaluate(measures);
 
 	}
+
+	public static ArrayList<Double> getArray2List(JSONArray items){
+		ArrayList<Double> embs=new ArrayList<>();
+        for (Object item : items) {
+            embs.add((Double) item);
+        }
+		return embs;
+	}
+
 }
