@@ -37,10 +37,8 @@ public class WordProximityDetector {
 		ArrayList<String> temp = new ArrayList<>();
 		temp.add(this.firstWord);
 		temp.add(this.secondWord);
-		//W2WSimCollector w2wcoll = new W2WSimCollector(temp);
-		//return w2wcoll.getWordVectors();
-		W2VecCollector w2vcoll=new W2VecCollector(temp);
-		return w2vcoll.getWordVectors();
+		W2VecCollector w2vecCollector=new W2VecCollector(temp);
+		return w2vecCollector.getWordVectors(true);
 	}
 
 	public double determineProximity(ArrayList<Double> firstVec,
@@ -63,11 +61,4 @@ public class WordProximityDetector {
 		return proximity;
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String firstWord = "HttpRequest";
-		String secondWord = "HttpServletRequest";
-		System.out.println(new WordProximityDetector(firstWord, secondWord)
-				.determineProximity());
-	}
 }

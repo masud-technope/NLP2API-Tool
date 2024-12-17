@@ -81,7 +81,6 @@ public class ContentLoader {
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return tokens;

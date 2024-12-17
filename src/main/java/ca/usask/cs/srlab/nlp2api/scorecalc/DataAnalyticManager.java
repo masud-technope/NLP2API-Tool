@@ -21,13 +21,13 @@ import ca.usask.cs.srlab.nlp2api.w2vec.W2WSimCollector;
 public class DataAnalyticManager {
 
 	DirectedGraph<String, DefaultEdge> graph;
-	SimpleDirectedWeightedGraph<String, DefaultWeightedEdge> wgraph;
+	SimpleDirectedWeightedGraph<String, DefaultWeightedEdge> wGraph;
 	HashSet<String> vertices;
 
 	public DataAnalyticManager(DirectedGraph<String, DefaultEdge> graph) {
 		this.graph = graph;
 		this.vertices = new HashSet<>(this.graph.vertexSet());
-		this.wgraph = new SimpleDirectedWeightedGraph<>(
+		this.wGraph = new SimpleDirectedWeightedGraph<>(
 				DefaultWeightedEdge.class);
 	}
 
@@ -39,16 +39,14 @@ public class DataAnalyticManager {
 	}
 
 	public SimpleDirectedWeightedGraph<String, DefaultWeightedEdge> getWeightedGraph() {
-		// get the weighted graph
 		for (String vertex : this.vertices) {
-			if (!this.wgraph.containsVertex(vertex)) {
-				this.wgraph.addVertex(vertex);
+			if (!this.wGraph.containsVertex(vertex)) {
+				this.wGraph.addVertex(vertex);
 			}
 		}
-		// semantic vector map
+
 		HashMap<String, ArrayList<Double>> vectorMap = getSemanticVectors();
 
-		// now add the edges
 		HashSet<DefaultEdge> edges = new HashSet<>(this.graph.edgeSet());
 		for (DefaultEdge edge : edges) {
 			String source = this.graph.getEdgeSource(edge);
@@ -57,34 +55,28 @@ public class DataAnalyticManager {
 					target, vectorMap);
 			double edgeWeight = wpd.determineProximity();
 
-			// adding nodes, edge, and edge weight
-			if (!this.wgraph.containsVertex(source)) {
-				this.wgraph.addVertex(source);
+			if (!this.wGraph.containsVertex(source)) {
+				this.wGraph.addVertex(source);
 			}
-			if (!this.wgraph.containsVertex(target)) {
-				this.wgraph.addVertex(target);
+			if (!this.wGraph.containsVertex(target)) {
+				this.wGraph.addVertex(target);
 			}
-
-			// avoid the loops
+			
 			if (source.equals(target))
 				continue;
 
-			if (!this.wgraph.containsEdge(source, target)) {
-				this.wgraph.addEdge(source, target);
-				DefaultWeightedEdge wedge = this.wgraph.getEdge(source, target);
-				this.wgraph.setEdgeWeight(wedge, edgeWeight);
+			if (!this.wGraph.containsEdge(source, target)) {
+				this.wGraph.addEdge(source, target);
+				DefaultWeightedEdge wedge = this.wGraph.getEdge(source, target);
+				this.wGraph.setEdgeWeight(wedge, edgeWeight);
 			}
-			if (!this.wgraph.containsEdge(target, source)) {
-				this.wgraph.addEdge(target, source);
-				DefaultWeightedEdge wedge = this.wgraph.getEdge(target, source);
-				this.wgraph.setEdgeWeight(wedge, edgeWeight);
+			if (!this.wGraph.containsEdge(target, source)) {
+				this.wGraph.addEdge(target, source);
+				DefaultWeightedEdge wedge = this.wGraph.getEdge(target, source);
+				this.wGraph.setEdgeWeight(wedge, edgeWeight);
 			}
 		}
 
-		return this.wgraph;
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		return this.wGraph;
 	}
 }

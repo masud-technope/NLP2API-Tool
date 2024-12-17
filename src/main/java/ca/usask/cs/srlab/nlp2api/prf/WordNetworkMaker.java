@@ -25,7 +25,6 @@ public class WordNetworkMaker {
 	final int WINDOW_SIZE = 2;
 
 	public WordNetworkMaker(ArrayList<String> sentences) {
-		// initializing both graphs
 		this.sentences = sentences;
 		this.wGraph = new SimpleDirectedWeightedGraph<>(
 				DefaultWeightedEdge.class);
@@ -34,20 +33,15 @@ public class WordNetworkMaker {
 	}
 
 	public WordNetworkMaker(ArrayList<String> sentences,
-			HashMap<String, ArrayList<String>> alltermMap) {
-		// initializing both graphs
+			HashMap<String, ArrayList<String>> allTermMap) {
 		this.sentences = sentences;
 		this.wGraph = new SimpleDirectedWeightedGraph<>(
 				DefaultWeightedEdge.class);
 		this.graph = new DefaultDirectedGraph<>(DefaultEdge.class);
 		this.tokenDB = new HashMap<>();
-		// adjacency initialization
-		// temporary,just for now.
-		// this.adjacent = new AdjacencyScoreProvider(sentences, alltermMap);
 	}
 
 	public DirectedGraph<String, DefaultEdge> createWordNetwork() {
-		// developing the word network
 		for (String sentence : this.sentences) {
 			String[] tokens = sentence.split("\\p{Punct}+|\\d+|\\s+");
 			for (int index = 0; index < tokens.length; index++) {
@@ -60,7 +54,6 @@ public class WordNetworkMaker {
 				if (index < tokens.length - 1)
 					nextToken = tokens[index + 1];
 
-				// now add the graph nodes
 				if (!graph.containsVertex(currentToken)) {
 					graph.addVertex(currentToken);
 				}
@@ -71,8 +64,6 @@ public class WordNetworkMaker {
 				if (!graph.containsVertex(nextToken) && !nextToken.isEmpty()) {
 					graph.addVertex(nextToken);
 				}
-
-				// System.out.println(currentToken);
 
 				// adding edges to the graph
 				if (!previousToken.isEmpty())
@@ -90,47 +81,44 @@ public class WordNetworkMaker {
 					}
 			}
 		}
-		// returning the created graph
 		return graph;
 	}
 
 	public HashMap<String, QueryToken> getTokenDictionary(boolean weighted) {
-		// populating token dictionary
 		HashSet<String> nodes = new HashSet<>();
 		if (weighted)
 			nodes.addAll(wGraph.vertexSet());
 		else
 			nodes.addAll(graph.vertexSet());
 		for (String vertex : nodes) {
-			QueryToken qtoken = new QueryToken();
-			qtoken.token = vertex;
-			this.tokenDB.put(vertex, qtoken);
+			QueryToken qToken = new QueryToken();
+			qToken.token = vertex;
+			this.tokenDB.put(vertex, qToken);
 		}
 		return this.tokenDB;
 	}
 
 	protected ArrayList<String> collectTopTokens(
-			HashMap<String, QueryToken> sortedtokendb) {
-		// collecting top tokens
-		ArrayList<String> toptokens = new ArrayList<>();
+			HashMap<String, QueryToken> sortedTokenDB) {
+		ArrayList<String> topTokens = new ArrayList<>();
 		int count = 0;
-		for (String key : sortedtokendb.keySet()) {
-			toptokens.add(key);
+		for (String key : sortedTokenDB.keySet()) {
+			topTokens.add(key);
 			count++;
 			if (count == 5)
 				break;
 		}
-		return toptokens;
+		return topTokens;
 	}
 
 	protected ArrayList<String> getImportantTokens(
-			HashMap<String, QueryToken> sortedtokendb, String bugtitle) {
-		ArrayList<String> toptokens = new ArrayList<>();
+			HashMap<String, QueryToken> sortedTokenDB, String queryTitle) {
+		ArrayList<String> topTokens = new ArrayList<>();
 		int count = 0;
 		int intitle = 0;
-		for (String key : sortedtokendb.keySet()) {
-			if (bugtitle.contains(key)) {
-				toptokens.add(key);
+		for (String key : sortedTokenDB.keySet()) {
+			if (queryTitle.contains(key)) {
+				topTokens.add(key);
 				count++;
 				intitle++;
 			}
@@ -139,20 +127,19 @@ public class WordNetworkMaker {
 		}
 		int lateradded = 0;
 		if (intitle < 5) {
-			for (String token : sortedtokendb.keySet()) {
-				if (!bugtitle.contains(token)) {
-					toptokens.add(token);
+			for (String token : sortedTokenDB.keySet()) {
+				if (!queryTitle.contains(token)) {
+					topTokens.add(token);
 					lateradded++;
 					if (lateradded + intitle == 5)
 						break;
 				}
 			}
 		}
-		return toptokens;
+		return topTokens;
 	}
 
-	public void showEdges(HashMap<String, QueryToken> tokendb) {
-		// showing the network edges
+	public void showEdges(HashMap<String, QueryToken> tokenDB) {
 		if (graph != null) {
 			Set<DefaultEdge> edges = graph.edgeSet();
 			ArrayList<DefaultEdge> edgeList = new ArrayList<>(edges);
@@ -161,9 +148,5 @@ public class WordNetworkMaker {
 						+ graph.getEdgeTarget(edge));
 			}
 		}
-	}
-
-	public static void main(String[] args) {
-		// main method
 	}
 }

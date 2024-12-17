@@ -28,19 +28,27 @@ public class GitHubEvaluator {
 	int NUM_QUERY_SIZE = 310;
 
 	public GitHubEvaluator(int TOPK, boolean isBaseline) {
-		this.goldFolder = StaticData.EXP_HOME
-				+ "/search-engine-resx/github/goldset";
-		this.resultFolder = StaticData.EXP_HOME + "/search-engine-resx/github/"
-				+ (isBaseline ? "nl-result" : "proposed-result");
+		this.goldFolder = getGoldFolder();
+		this.resultFolder = getResultFolder();
 		this.queryMap = QueryLoader.loadQueries();
 		this.isBaseline = isBaseline;
 		this.RESULT_SIZE = TOPK;
 	}
 
+	private String getGoldFolder() {
+		return StaticData.EXP_HOME + "/search-engine-resx/google/goldset";
+	}
+
+	private String getResultFolder(){
+		return  StaticData.EXP_HOME + "/search-engine-resx/github/"
+				+ (isBaseline ? "nl-result" : "proposed-result");
+	}
+
+
 	protected double getAvgPrecisionK(ArrayList<Integer> resultLinks,
 			ArrayList<Integer> goldLinks, int K) {
 		double linePrec = 0;
-		K = resultLinks.size() < K ? resultLinks.size() : K;
+		K = Math.min(resultLinks.size(), K);
 		double found = 0.0;
 		for (int index = 0; index < K; index++) {
 			int resultEntry = resultLinks.get(index);
@@ -57,7 +65,7 @@ public class GitHubEvaluator {
 
 	protected double getPrecision(ArrayList<Integer> resultLinks,
 			ArrayList<Integer> goldLinks, int K) {
-		K = resultLinks.size() < K ? resultLinks.size() : K;
+		K = Math.min(resultLinks.size(), K);
 		double found = 0.0;
 		for (int index = 0; index < K; index++) {
 			int resultEntry = resultLinks.get(index);
@@ -73,7 +81,7 @@ public class GitHubEvaluator {
 
 	protected double getRecall(ArrayList<Integer> resultLinks,
 			ArrayList<Integer> goldLinks, int K) {
-		K = resultLinks.size() < K ? resultLinks.size() : K;
+		K = Math.min(resultLinks.size(), K);
 		double found = 0.0;
 		for (int index = 0; index < K; index++) {
 			int resultEntry = resultLinks.get(index);
@@ -103,7 +111,7 @@ public class GitHubEvaluator {
 
 	protected double getRRank(ArrayList<Integer> resultLinks,
 			ArrayList<Integer> goldLinks, int K) {
-		K = resultLinks.size() < K ? resultLinks.size() : K;
+		K = Math.min(resultLinks.size(), K);
 		double rrank = 0;
 		for (int i = 0; i < K; i++) {
 			int resultEntry = resultLinks.get(i);
@@ -138,17 +146,20 @@ public class GitHubEvaluator {
 		return tempList;
 	}
 
+	protected double getDOI(int position, int totalSize) {
+		return 1 - (double) position / totalSize;
+	}
+
 	protected HashMap<Integer, Double> loadGoldUtilityMap(int caseID) {
 		HashMap<Integer, Double> goldUtilMap = new HashMap<>();
 		String goldFile = this.goldFolder + "/" + caseID + ".txt";
 		ArrayList<String> lines = ContentLoader.getAllLinesOptList(goldFile);
+		int rank = 0;
 		for (String line : lines) {
-			String[] parts = line.split("\\s+");
-			if (parts.length == 2) {
-				int index = Integer.parseInt(parts[0].trim());
-				double utility = Double.parseDouble(parts[1].trim());
-				goldUtilMap.put(index, utility);
-			}
+			rank++;
+			int index = Integer.parseInt(line.trim());
+			double utility = getDOI(rank, lines.size());
+			goldUtilMap.put(index, utility);
 		}
 		return goldUtilMap;
 	}
@@ -158,7 +169,7 @@ public class GitHubEvaluator {
 		double tempDCG = 0;
 		if (results.isEmpty() || goldLinks.isEmpty() || utilMap.isEmpty())
 			return 0;
-		int KLim0 = results.size() < K ? results.size() : K;
+		int KLim0 = Math.min(results.size(), K);
 		for (int i = 0; i < KLim0; i++) {
 			int fileID = results.get(i);
 			double rel_i = goldLinks.contains(fileID) ? utilMap.get(fileID) : 0;
@@ -171,7 +182,7 @@ public class GitHubEvaluator {
 		double tempIDCG = 0;
 		List<Map.Entry<Integer, Double>> sorted = ItemSorter
 				.sortHashMapIntDouble(utilMap);
-		int KLim = sorted.size() < K ? sorted.size() : K;
+		int KLim = Math.min(sorted.size(), K);
 		for (int i = 0; i < KLim; i++) {
 			int fileID = sorted.get(i).getKey();
 			double rel_i = utilMap.get(fileID);

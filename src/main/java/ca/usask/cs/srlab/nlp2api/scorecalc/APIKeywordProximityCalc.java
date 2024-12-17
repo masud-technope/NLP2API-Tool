@@ -6,23 +6,22 @@
 
 package ca.usask.cs.srlab.nlp2api.scorecalc;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import ca.usask.cs.srlab.nlp2api.config.StaticData;
+import ca.usask.cs.srlab.nlp2api.data.analytics.WordProximityDetector;
 import ca.usask.cs.srlab.nlp2api.utility.ContentWriter;
 import ca.usask.cs.srlab.nlp2api.w2vec.W2VecCollector;
-import ca.usask.cs.srlab.nlp2api.w2vec.python.WordEmbeddingCollector;
-import ca.usask.cs.srlab.nlp2api.data.analytics.WordProximityDetector;
 import edu.stanford.nlp.util.ArrayUtils;
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class APIKeywordProximityCalc {
 
     ArrayList<String> candidateAPIKeys;
     ArrayList<String> queryTerms;
     HashMap<String, Double> proximityScoreMap;
-    HashMap<String, ArrayList<Double>> vectorMap;
+    HashMap<String, ArrayList<Double>> vectorMap=new HashMap<>();
     boolean vectorProvided = false;
     public static HashMap<String, ArrayList<Double>> masterEmbeddingMap = new HashMap<>();
 
@@ -44,6 +43,7 @@ public class APIKeywordProximityCalc {
     }
 
 
+    @Deprecated
     protected void saveAPICandidates(int caseID) {
         // save the API candidates
         ArrayList<String> wordList = new ArrayList<>();
@@ -54,19 +54,14 @@ public class APIKeywordProximityCalc {
         ContentWriter.writeContent(outputFile, wordList);
     }
 
+    @Deprecated
     public HashMap<String, Double> calculateQAProximityLocal() {
         ArrayList<String> wordList = new ArrayList<>();
         wordList.addAll(this.queryTerms);
         wordList.addAll(this.candidateAPIKeys);
 
-        // get the master embeddings
         if (masterEmbeddingMap.isEmpty()) {
-            if (!vectorProvided) {
-                masterEmbeddingMap = new WordEmbeddingCollector()
-                        .getMasterEmbeddingList();
-            } else {
-                masterEmbeddingMap = vectorMap;
-            }
+            masterEmbeddingMap = vectorMap;
         }
 
         for (String apiKey : this.candidateAPIKeys) {
@@ -84,11 +79,13 @@ public class APIKeywordProximityCalc {
         return this.proximityScoreMap;
     }
 
+
+
     public HashMap<String, Double> calculateKeywordAPIProximity() {
         for (String apiKey : this.candidateAPIKeys) {
             ArrayList<Double> proxies = new ArrayList<>();
-            for (String qterm : this.queryTerms) {
-                double proximity = new WordProximityDetector(apiKey, qterm,
+            for (String qTerm : this.queryTerms) {
+                double proximity = new WordProximityDetector(apiKey, qTerm,
                         vectorMap).determineProximity();
                 proxies.add(proximity);
             }

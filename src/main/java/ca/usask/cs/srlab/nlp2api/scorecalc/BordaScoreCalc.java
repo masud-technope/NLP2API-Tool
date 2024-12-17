@@ -76,13 +76,6 @@ public class BordaScoreCalc {
 			ArrayList<String> candidates = candidateMap.get(prfKey);
 			for (String candidate : candidates) {
 				masterList.add(candidate);
-				/*if (candidate.matches(regex)) {
-					if (stopManager.isAStopWord(candidate)) {
-						// discard this
-					} else {
-						masterList.add(candidate);
-					}
-				}*/
 			}
 		}
 		return masterList;
@@ -95,15 +88,7 @@ public class BordaScoreCalc {
 		for (String prfKey : candidateMap.keySet()) {
 			ArrayList<String> candidates = candidateMap.get(prfKey);
 			add2BordaScore(masterSet, candidates);
-			//add2BordaScoreBySimpleCount(masterSet, candidates); //not good
-			
-			//System.out.println(prfKey+": "+candidates);
 		}
 		return this.bordaScoreMap;
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 }
