@@ -25,7 +25,7 @@ public class PRFProvider {
     int TOPK = 10;
 
     public PRFProvider(String initialQuery, String indexFolder, int TOPK) {
-        this.initialQuery = initialQuery;
+        this.initialQuery = new TextNormalizer(initialQuery).normalizeText();
         this.indexFolder = indexFolder;
         this.TOPK = TOPK;
     }

@@ -18,7 +18,7 @@ import ca.usask.cs.srlab.nlp2api.prf.CSBDAManager;
 import ca.usask.cs.srlab.nlp2api.scorecalc.CodeSearchBDAReformulator;
 import ca.usask.cs.srlab.nlp2api.config.StaticData;
 import ca.usask.cs.srlab.nlp2api.evaluation.APILoader;
-import ca.usask.cs.srlab.nlp2api.evaluation.BDACodeSeachPerformanceCalc;
+import ca.usask.cs.srlab.nlp2api.evaluation.BDACodeSearchPerformanceCalc;
 import ca.usask.cs.srlab.nlp2api.evaluation.QueryRankComparer;
 import ca.usask.cs.srlab.nlp2api.evaluation.ResultAnalyzer;
 
@@ -149,7 +149,7 @@ public class NLP2APIRunner {
 					if (topk > 0) {
 						System.out
 								.println("Code Segment Retrieval Performance:");
-						new BDACodeSeachPerformanceCalc(outputFile, topk)
+						new BDACodeSearchPerformanceCalc(outputFile, topk)
 								.evaluateQueries();
 					}
 				} else {

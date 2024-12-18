@@ -246,12 +246,4 @@ public class SOEvaluator {
         System.out.println("NDCG@" + RESULT_SIZE + ": " + sumNDCG / qsize);
 
     }
-
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        int TOPK = 10;
-        boolean isBaseline = false;
-        new SOEvaluator(TOPK, isBaseline).determinePerformance(TOPK);
-
-    }
 }
